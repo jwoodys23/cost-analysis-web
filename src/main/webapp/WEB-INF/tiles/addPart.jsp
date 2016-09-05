@@ -19,18 +19,21 @@
              </div>
 
             <div class="panel-body">
-                <form:form commandName="partUpdate">
-                    <%--<div class="form-group">--%>
-                        <%--<label for="material-cost">Material Cost</label>--%>
-                        <%--<form:input path="materialCost" class="form-control" id="material-cost" text="materialCost"></form:input>--%>
-                        <%--</div>--%>
-                    <%--<div class="form-group">--%>
-                        <%--<label for="part-text">Part Name</label>--%>
-                        <%--<form:input path="text" class="form-control" id="part-text" name="text"></form:input>--%>
-                    <%--</div>--%>
-                    <div class="form-group">
-                        <form:textarea path="text" name="text" rows="10" cols="50"></form:textarea>
+                <form:form modelAttribute="partUpdate">
+                    <div>
+                        <form:errors path="partName"  />
                     </div>
+                    <div class="form-group">
+                        <label for="material-cost">Material Cost</label>
+                        <form:input path="materialCost" class="form-control" id="material-cost" text="materialCost"/>
+                        </div>
+                    <div class="form-group">
+                        <label for="part-text">Part Name</label>
+                        <form:input path="partName" class="form-control" id="part-text" name="partName"/>
+                    </div>
+                    <%--<div class="form-group">--%>
+                        <%--<form:textarea path="text" name="text" rows="10" cols="50"></form:textarea>--%>
+                    <%--</div>--%>
 
                     <input type="submit" name="submit" value="Add Part"/>
                 </form:form>

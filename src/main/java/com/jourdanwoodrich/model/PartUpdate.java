@@ -1,6 +1,8 @@
 package com.jourdanwoodrich.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -17,8 +19,10 @@ public class PartUpdate {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "text")
-    private String text;
+    @NotNull
+    @Size(min = 4, max = 25, message = "{addpart.partName.size}")
+    @Column(name = "partName")
+    private String partName;
 
     @Column(name = "materialCost")
     private BigDecimal materialCost;
@@ -38,17 +42,17 @@ public class PartUpdate {
 
     }
 
-    public PartUpdate(String text){
-        this.text = text;
+    public PartUpdate(String partName){
+        this.partName = partName;
     }
 
-    public PartUpdate(String text, Date added){
-        this.text = text;
+    public PartUpdate(String partName, Date added){
+        this.partName = partName;
         this.added=added;
     }
 
     public PartUpdate(String text, BigDecimal materialCost, Date added){
-        this.text = text;
+        this.partName = text;
         this.materialCost=materialCost;
         this.added=added;
     }
@@ -69,12 +73,12 @@ public class PartUpdate {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getPartName() {
+        return partName;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setPartName(String partName) {
+        this.partName = partName;
     }
 
     public BigDecimal getMaterialCost() {
@@ -93,7 +97,7 @@ public class PartUpdate {
         PartUpdate partUpdate = (PartUpdate) o;
 
         if (id != null ? !id.equals(partUpdate.id) : partUpdate.id != null) return false;
-        if (text != null ? !text.equals(partUpdate.text) : partUpdate.text != null) return false;
+        if (partName != null ? !partName.equals(partUpdate.partName) : partUpdate.partName != null) return false;
         if (materialCost != null ? !materialCost.equals(partUpdate.materialCost) : partUpdate.materialCost != null)
             return false;
         return added != null ? added.equals(partUpdate.added) : partUpdate.added == null;
@@ -103,7 +107,7 @@ public class PartUpdate {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (text != null ? text.hashCode() : 0);
+        result = 31 * result + (partName != null ? partName.hashCode() : 0);
         result = 31 * result + (materialCost != null ? materialCost.hashCode() : 0);
         result = 31 * result + (added != null ? added.hashCode() : 0);
         return result;
@@ -113,7 +117,7 @@ public class PartUpdate {
     public String toString() {
         return "PartUpdate{" +
                 "id=" + id +
-                ", text='" + text + '\'' +
+                ", text='" + partName + '\'' +
                 ", materialCost=" + materialCost +
                 ", added=" + added +
                 '}';

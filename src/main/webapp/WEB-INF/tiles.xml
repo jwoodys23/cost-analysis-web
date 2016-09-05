@@ -15,4 +15,9 @@
     <definition name="app.addPart" extends="app.default">
         <put-attribute name="content" value="/WEB-INF/tiles/addPart.jsp" />
     </definition>
+    <definition name="app.viewParts" extends="app.default">
+        <put-attribute name="content" value="/WEB-INF/tiles/viewParts.jsp" />
+    </definition>
+
+
 </tiles-definitions>

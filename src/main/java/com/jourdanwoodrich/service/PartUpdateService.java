@@ -3,6 +3,9 @@ package com.jourdanwoodrich.service;
 import com.jourdanwoodrich.model.PartUpdate;
 import com.jourdanwoodrich.model.PartUpdateDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PartUpdateService {
+
+    private final static int PAGESIZE = 20;
 
     @Autowired
     private PartUpdateDao partUpdateDao;
@@ -21,5 +26,10 @@ public class PartUpdateService {
 
     public PartUpdate getLatest(){
         return partUpdateDao.findFirstByOrderByAddedDesc();
+    }
+
+    public Page<PartUpdate> getPage(int pageNumber){
+        PageRequest request = new PageRequest(pageNumber-1, PAGESIZE, Sort.Direction.DESC, "added");
+        return partUpdateDao.findAll(request);
     }
 }
